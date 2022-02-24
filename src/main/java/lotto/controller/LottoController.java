@@ -4,7 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoNumber;
 import lotto.domain.Lottos;
-import lotto.domain.Price;
+import lotto.domain.Money;
 import lotto.domain.Rankings;
 import lotto.domain.WinningLotto;
 import lotto.view.LottoInput;
@@ -19,24 +19,24 @@ public class LottoController {
     }
 
     public void run() {
-        Price buyPrice = new Price(LottoInput.inputPrice());
+        Money buyMoney = new Money(LottoInput.inputPrice());
         int manualBuyCount = LottoInput.inputManualBuyCount();
 
-        Lottos lottos = createLottos(buyPrice, manualBuyCount);
+        Lottos lottos = createLottos(buyMoney, manualBuyCount);
 
-        LottoOutput.printBuySum(buyPrice.calculateAutoBuyCount(manualBuyCount), manualBuyCount);
+        LottoOutput.printBuySum(buyMoney.calculateAutoBuyCount(manualBuyCount), manualBuyCount);
         LottoOutput.printLottoNumber(lottos);
 
         WinningLotto winningLotto = createWinningLotto();
 
         Rankings rankings = Rankings.of(lottos, winningLotto);
 
-        LottoOutput.printLottoResult(rankings, buyPrice);
+        LottoOutput.printLottoResult(rankings, buyMoney);
     }
 
-    private Lottos createLottos(Price buyPrice, int manualBuyCount) {
+    private Lottos createLottos(Money buyMoney, int manualBuyCount) {
         Lottos lottos = LottoInput.inputManualLottos(manualBuyCount);
-        int autoBuyCount = buyPrice.calculateAutoBuyCount(manualBuyCount);
+        int autoBuyCount = buyMoney.calculateAutoBuyCount(manualBuyCount);
         lottos.add(lottoGenerator.generateLottos(autoBuyCount));
         return lottos;
     }

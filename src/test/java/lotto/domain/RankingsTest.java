@@ -64,6 +64,6 @@ class RankingsTest {
             new WinningLotto(lotteryNumbers, bounusNum));
 
         // then
-        assertThat(lottoResult.countRewardRate(new Price(2000))).isEqualTo(15000);
+        assertThat(lottoResult.countRewardRate(new Money(2000))).isEqualTo(15000);
     }
 }

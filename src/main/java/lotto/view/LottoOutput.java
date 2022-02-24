@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.Price;
+import lotto.domain.Money;
 import lotto.domain.Ranking;
 import lotto.domain.Rankings;
 import lotto.domain.Reward;
@@ -33,9 +33,9 @@ public class LottoOutput {
         System.out.println(sumStatus);
     }
 
-    public static void printLottoResult(Rankings rankings, Price buyPrice) {
+    public static void printLottoResult(Rankings rankings, Money buyMoney) {
         StringBuilder rankingStatus = printRankingStatus(rankings);
-        String rewardRate = printRewardRate(new Reward(rankings, buyPrice));
+        String rewardRate = printRewardRate(new Reward(rankings, buyMoney));
         System.out.println(rankingStatus
             .append(ENTER)
             .append(rewardRate));

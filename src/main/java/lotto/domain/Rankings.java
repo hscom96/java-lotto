@@ -41,10 +41,10 @@ public class Rankings {
         return rankingCount.getOrDefault(ranking, DEFAULT_FREQUENCY);
     }
 
-    public double countRewardRate(Price buyPrice) {
+    public double countRewardRate(Money buyMoney) {
         int winnerPriceSum = countWinnerPriceSum();
         return BigDecimal.valueOf(winnerPriceSum)
-            .divide(BigDecimal.valueOf(buyPrice.getBuyPrice()), REWARD_SCALE,
+            .divide(BigDecimal.valueOf(buyMoney.getValue()), REWARD_SCALE,
                 RoundingMode.HALF_EVEN)
             .doubleValue();
     }
